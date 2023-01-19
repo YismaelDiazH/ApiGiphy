@@ -32,7 +32,7 @@ const inputSearch = document.getElementById("search");
         console.log(event);
         if (event.keyCode != 13) return;
         const response = await fetch(
-          `http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${inputSearch.value}`
+          `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${inputSearch.value}`
         );
         const datagif = await response.json();
         // console.log(data);
