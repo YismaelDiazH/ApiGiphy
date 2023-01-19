@@ -27,11 +27,11 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-white border-4 border-primary border-bottom" id="buscar" aria-current="page"
+                            <a class="nav-link text-white border-4 border-primary border-bottom btnBuscar" id="buscar" aria-current="page"
                                 href="#"><b><i data-feather="search"></i>&nbsp;Buscar gif</a></b>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white border-4 border-info border-bottom" href="#"><i
+                            <a class="nav-link text-white border-4 border-info border-bottom" id="gifRandom" href="#"><i
                                     data-feather="gift"></i>&nbsp;GIF aleatorio</a>
                         </li>
 
@@ -49,7 +49,7 @@
 
                 <input type="text" name="search" id="search" class="form-control rounded-1  h-auto"
                     placeholder="Busca cualquier GIF" aria-describedby="btn">
-                <button class="btn btn-danger bg-danger rounded-1 bg-opacity-75" type="submit"> <i
+                <button class="btn btn-danger bg-danger rounded-1 bg-opacity-75" id="btnBuscar"  type="submit"> <i
                         data-feather="search"></i></button>
 
             </div>
@@ -61,7 +61,7 @@
     </header>
     
     <main class="container mt-5">
-        <div class="row row-cols-1" id="random">
+        <div id="random">
 
         </div>
 

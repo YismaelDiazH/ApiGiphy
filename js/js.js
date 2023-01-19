@@ -28,11 +28,34 @@
 const API_KEY = 'h6V0yMsand0N7sKRJXCOTdxRKF9vSPQV';
 const inputSearch = document.getElementById("search");
 const inputSearchNav = document.getElementById("buscar");
+const inputBuscar = document.getElementById("btnBuscar");
+const clicRandom = document.getElementById("gifRandom");
       
 const search= async (event) => {
         event.preventDefault();
         console.log(event);
-        if (event.keyCode != 13 || inputSearchNav.onclick !=0) return;
+        if (event.keyCode != 13 ) return;
+        const response = await fetch(
+          `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${inputSearch.value}`
+        );
+        const datagif = await response.json();
+        // console.log(data);
+        // console.log(data.json);
+        let content = ``;
+        datagif.data.map((gif,index) => {
+          content += `
+          <img src="${gif.images.original.url}" class= "mb-3" alt="${gif.title}">
+          `;
+        });
+        gifs.innerHTML = content;
+        document.getElementById("random").innerHTML =`''
+        `;
+      };
+
+      const searchBtn =async (event) => {
+        event.preventDefault();
+        console.log(event);
+        
         const response = await fetch(
           `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${inputSearch.value}`
         );
@@ -50,7 +73,8 @@ const search= async (event) => {
         `;
       };
       inputSearch.onkeyup = search
-      inputSearchNav.onclick = search
+      inputSearchNav.onclick = searchBtn
+      inputBuscar.onclick = searchBtn
 
       const END_PONT_RANDOM = "https://api.giphy.com/v1/gifs/random";
       const change = async()=>{
@@ -61,10 +85,13 @@ const search= async (event) => {
 
         console.log(url);
         document.getElementById("random").innerHTML =`
-        <img src="${url}" class="rounded mx-auto d-block" >
+        <img src="${url}" width="60%" class="rounded mx-auto d-block" >
         `;
+        gifs.innerHTML = '';
         
       }
+
+      clicRandom.onclick=change;
 
       document.addEventListener('DOMContentLoaded', change);
 
