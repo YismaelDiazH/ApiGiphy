@@ -27,10 +27,12 @@
 
 const API_KEY = 'h6V0yMsand0N7sKRJXCOTdxRKF9vSPQV';
 const inputSearch = document.getElementById("search");
-      inputSearch.onkeyup = async (event) => {
+const inputSearchNav = document.getElementById("buscar");
+      
+const search= async (event) => {
         event.preventDefault();
         console.log(event);
-        if (event.keyCode != 13) return;
+        if (event.keyCode != 13 || inputSearchNav.onclick !=0) return;
         const response = await fetch(
           `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${inputSearch.value}`
         );
@@ -44,8 +46,27 @@ const inputSearch = document.getElementById("search");
           `;
         });
         gifs.innerHTML = content;
-       
+        document.getElementById("random").innerHTML =`''
+        `;
       };
+      inputSearch.onkeyup = search
+      inputSearchNav.onclick = search
+
+      const END_PONT_RANDOM = "https://api.giphy.com/v1/gifs/random";
+      const change = async()=>{
+        let URL = `${END_PONT_RANDOM}?api_key=${API_KEY}`;
+        const response = await fetch(URL);
+        const gif = await response.json();
+        const {url} = gif.data.images.original
+
+        console.log(url);
+        document.getElementById("random").innerHTML =`
+        <img src="${url}" class="rounded mx-auto d-block" >
+        `;
+        
+      }
+
+      document.addEventListener('DOMContentLoaded', change);
 
 
 
